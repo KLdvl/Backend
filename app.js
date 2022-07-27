@@ -35,21 +35,21 @@ app.use((req, res, next) => {
 });
 
 // Parsing req using Express method
-app.use(express.json({limit: "1mb"}));
+app.use(express.json({ limit: "1mb" }));
 
 // Using helmet to secure headers
 app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
-// Block request when server is too busy
-app.use(function(req,res,next) {
-  if(toobusy()) {
-    res.status(503).json({ message: "I'm busy right now, sorry."});
-  } else {
-    next();
-  }
-});
+// // Block request when server is too busy
+// app.use(function(req,res,next) {
+//   if(toobusy()) {
+//     res.status(503).json({ message: "I'm busy right now, sorry."});
+//   } else {
+//     next();
+//   }
+// });
 
 // Limit requests for a period of time
 const limiter = rateLimit({
